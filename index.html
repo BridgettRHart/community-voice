@@ -298,7 +298,7 @@ async function loadNewsletters() {
     const data = await res.json();
     const newsletters = (data.records||[])
       .map(r=>({id:r.id,...r.fields}))
-      .sort((a,b)=>new Date(b.month)-new Date(a.month));
+      .sort((a,b)=>new Date(b.date)-new Date(a.date));
 
     const current = newsletters.find(n=>n.is_current);
     const archive = newsletters.filter(n=>!n.is_current);
@@ -331,7 +331,7 @@ async function loadNewsletters() {
             <a href="${esc(n.pdf_url)}" target="_blank" rel="noopener" class="archive-card">
               <div>
                 <div class="archive-card-title">${esc(n.title)}</div>
-                <div class="archive-card-date">${n.month?fmtMonth(n.month):''}</div>
+                <div class="archive-card-date">${n.date?fmtMonth(n.date):''}</div>
               </div>
               <span class="archive-arrow">↗</span>
             </a>`).join('')}
