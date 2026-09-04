@@ -97,6 +97,39 @@
   .archive-card-date{font-size:0.75rem;color:var(--mid-gray);margin-top:2px;}
   .archive-arrow{color:var(--green);font-size:1rem;flex-shrink:0;}
 
+  /* LANDSCAPE COMMITTEE */
+  .committee-card{background:linear-gradient(135deg,var(--green) 0%,var(--green-mid) 100%);color:var(--white);border-radius:var(--radius);padding:28px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:0;}
+  .committee-card-text h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;margin-bottom:8px;}
+  .committee-card-text p{font-size:0.88rem;opacity:0.85;line-height:1.6;max-width:500px;}
+  .btn-committee{background:var(--white);color:var(--green);border:none;padding:12px 24px;border-radius:8px;font-size:0.88rem;font-weight:700;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;transition:all 0.15s;}
+  .btn-committee:hover{background:var(--sand);transform:translateY(-1px);}
+
+  /* MODAL */
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.2s;}
+  .overlay.open{opacity:1;pointer-events:all;}
+  .modal{background:var(--white);border-radius:var(--radius);width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 8px 40px rgba(44,44,44,0.16);transform:translateY(20px);transition:transform 0.25s;}
+  .overlay.open .modal{transform:translateY(0);}
+  .modal-header{padding:22px 24px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--white);z-index:10;}
+  .modal-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;}
+  .modal-close{width:32px;height:32px;border:none;background:var(--sand-dark);border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:var(--mid-gray);}
+  .modal-close:hover{background:var(--border);}
+  .modal-body{padding:22px 24px;}
+  .modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;position:sticky;bottom:0;background:var(--white);}
+  .form-group{margin-bottom:18px;}
+  .form-label{display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;font-family:'DM Sans',sans-serif;}
+  .form-hint{font-size:0.78rem;color:var(--mid-gray);margin-top:4px;}
+  input[type="text"],input[type="email"],input[type="tel"],textarea{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:1rem;color:var(--charcoal);background:var(--white);outline:none;transition:border-color 0.15s;-webkit-appearance:none;}
+  input:focus,textarea:focus{border-color:var(--green);}
+  textarea{resize:vertical;min-height:100px;}
+  .btn-cancel{background:var(--white);color:var(--mid-gray);border:1.5px solid var(--border);padding:10px 20px;border-radius:8px;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;}
+  .btn-submit{background:var(--green);color:var(--white);border:none;padding:10px 24px;border-radius:8px;font-size:0.88rem;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;}
+  .btn-submit:hover{background:#1e4a1f;}
+  .btn-submit:disabled{opacity:0.6;cursor:not-allowed;}
+  .success-msg{text-align:center;padding:24px 16px;}
+  .success-icon{font-size:3rem;margin-bottom:12px;}
+  .success-msg h3{font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:8px;}
+  .success-msg p{font-size:0.9rem;color:var(--mid-gray);line-height:1.6;}
+
   footer{background:var(--green);color:rgba(255,255,255,0.7);text-align:center;padding:24px;font-size:0.8rem;line-height:1.6;font-family:'DM Sans',sans-serif;}
   footer p{max-width:700px;margin:0 auto;}
   footer a{color:var(--green-light);}
@@ -130,7 +163,7 @@
     </div>
     <div class="header-nav">
       <a href="https://tinyurl.com/DobsonTerraceEvents" target="_blank" class="nav-btn">📅 Events</a>
-      <a href="https://tinyurl.com/DobsonTerraceHelp" target="_blank" class="nav-btn">🤝 Help Board</a>
+      <a href="https://tinyurl.com/DobsonTerraceHelpBoard" target="_blank" class="nav-btn">🤝 Help Board</a>
       <a href="https://tinyurl.com/DobsonTerracePlants" target="_blank" class="nav-btn">🌿 Plant Guide</a>
     </div>
   </div>
@@ -145,6 +178,21 @@
 </div>
 
 <div class="main">
+
+  <div class="section">
+    <div class="section-eyebrow">Get Involved</div>
+    <div class="section-title">Landscape Committee</div>
+    <div class="section-desc">Help shape the look and feel of our neighborhood. The Landscape Committee advises on HOA landscaping decisions, community beautification, and plant approvals.</div>
+    <div class="committee-card">
+      <div class="committee-card-text">
+        <h3>🌿 Join the Landscape Committee</h3>
+        <p>We're looking for neighbors who care about our community's appearance and want a voice in landscaping decisions. No experience required — just passion for our neighborhood!</p>
+      </div>
+      <button class="btn-committee" onclick="openCommitteeModal()">Express Interest →</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
 
   <div class="section">
     <div class="section-eyebrow">Active Now</div>
@@ -217,11 +265,11 @@
         <div class="tool-desc">RSVP to events, volunteer to help, and donate supplies.</div>
         <div class="tool-link">tinyurl.com/DobsonTerraceEvents ↗</div>
       </a>
-      <a href="https://tinyurl.com/DobsonTerraceHelp" target="_blank" class="tool-card">
+      <a href="https://tinyurl.com/DobsonTerraceHelpBoard" target="_blank" class="tool-card">
         <div class="tool-icon">🤝</div>
         <div class="tool-title">Neighbor Help Board</div>
         <div class="tool-desc">Post a request for help or sign up to help a neighbor.</div>
-        <div class="tool-link">tinyurl.com/DobsonTerraceHelp ↗</div>
+        <div class="tool-link">tinyurl.com/DobsonTerraceHelpBoard ↗</div>
       </a>
       <a href="https://tinyurl.com/DobsonTerracePlants" target="_blank" class="tool-card">
         <div class="tool-icon">🌿</div>
@@ -232,6 +280,29 @@
     </div>
   </div>
 
+</div>
+
+<!-- LANDSCAPE COMMITTEE MODAL -->
+<div class="overlay" id="committeeOverlay" onclick="closeOnOverlay(event,'committeeOverlay')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title" id="committeeModalTitle">🌿 Join the Landscape Committee</div>
+      <button class="modal-close" onclick="closeModal('committeeOverlay')">✕</button>
+    </div>
+    <div class="modal-body" id="committeeModalBody">
+      <div style="background:var(--green-pale);border:1px solid var(--green-light);border-radius:8px;padding:12px 14px;font-size:0.83rem;color:var(--green);margin-bottom:18px;line-height:1.55;">
+        🏘️ By expressing interest you're letting us know you'd like to be considered for the Landscape Committee. We'll reach out with more details soon!
+      </div>
+      <div class="form-group"><label class="form-label">Your Name *</label><input type="text" id="lcName" placeholder="e.g. Maria Garcia"></div>
+      <div class="form-group"><label class="form-label">Phone Number</label><input type="tel" id="lcPhone" placeholder="e.g. 480-555-1234"><div class="form-hint">Optional but helpful for follow-up.</div></div>
+      <div class="form-group"><label class="form-label">Email Address</label><input type="email" id="lcEmail" placeholder="e.g. maria@email.com"><div class="form-hint">Optional but helpful for follow-up.</div></div>
+      <div class="form-group"><label class="form-label">Why are you interested? *</label><textarea id="lcWhy" placeholder="Tell us a little about why you'd like to join the Landscape Committee and any relevant experience or ideas you have."></textarea></div>
+    </div>
+    <div class="modal-footer" id="committeeModalFooter">
+      <button class="btn-cancel" onclick="closeModal('committeeOverlay')">Cancel</button>
+      <button class="btn-submit" onclick="submitCommittee()">Submit Interest</button>
+    </div>
+  </div>
 </div>
 
 <footer>
@@ -246,6 +317,58 @@
 const PROXY = 'https://airtable-proxy.bridgettrhart.workers.dev';
 const BASE  = 'appqnxeicJxL0v18h';
 
+// ─── COMMITTEE FORM ───────────────────────────────────────────
+function openCommitteeModal() {
+  ['lcName','lcPhone','lcEmail','lcWhy'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.value = '';
+  });
+  document.getElementById('committeeModalTitle').textContent = '🌿 Join the Landscape Committee';
+  document.getElementById('committeeModalFooter').innerHTML =
+    `<button class="btn-cancel" onclick="closeModal('committeeOverlay')">Cancel</button>
+     <button class="btn-submit" onclick="submitCommittee()">Submit Interest</button>`;
+  openModal('committeeOverlay');
+}
+
+async function submitCommittee() {
+  const name  = document.getElementById('lcName')?.value.trim();
+  const phone = document.getElementById('lcPhone')?.value.trim() || '';
+  const email = document.getElementById('lcEmail')?.value.trim() || '';
+  const why   = document.getElementById('lcWhy')?.value.trim();
+
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!why)  { alert('Please tell us why you\'re interested.'); return; }
+  if (!phone && !email) { alert('Please enter at least a phone number or email so we can reach you.'); return; }
+
+  const btn = document.querySelector('#committeeModalFooter .btn-submit');
+  btn.textContent = 'Submitting…'; btn.disabled = true;
+
+  try {
+    const fields = { full_name: name, why_interested: why };
+    if (phone) fields.phone = phone;
+    if (email) fields.email = email;
+
+    await fetch(`${PROXY}/${BASE}/landscape_committee`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ records: [{ fields }] })
+    });
+
+    document.getElementById('committeeModalBody').innerHTML = `
+      <div class="success-msg">
+        <div class="success-icon">🌿</div>
+        <h3>Thank you, ${esc(name)}!</h3>
+        <p>We've received your interest in the Landscape Committee. We'll be in touch soon with more details!</p>
+      </div>`;
+    document.getElementById('committeeModalFooter').innerHTML =
+      `<button class="btn-submit" onclick="closeModal('committeeOverlay')">Done</button>`;
+  } catch(e) {
+    alert('Something went wrong. Please try again.');
+    btn.textContent = 'Submit Interest'; btn.disabled = false;
+  }
+}
+
+// ─── SURVEYS ──────────────────────────────────────────────────
 const SURVEY_CONFIG = {
   interest: { label: 'Interest Survey', accentClass: 'terra', btnClass: 'terra' },
   rating:   { label: 'Annual Survey',   accentClass: 'green', btnClass: '' },
@@ -292,6 +415,7 @@ async function loadSurveys() {
   }
 }
 
+// ─── NEWSLETTERS ──────────────────────────────────────────────
 async function loadNewsletters() {
   try {
     const res = await fetch(`${PROXY}/${BASE}/newsletters`);
@@ -310,7 +434,6 @@ async function loadNewsletters() {
     }
 
     let html = '';
-
     if (current) {
       html += `<div class="newsletter-featured">
         <div class="newsletter-featured-text">
@@ -338,7 +461,6 @@ async function loadNewsletters() {
         </div>
       </div>`;
     }
-
     section.innerHTML = html;
   } catch(e) {
     document.getElementById('newsletterSection').innerHTML=
@@ -354,15 +476,16 @@ function toggleArchive() {
   arrow.textContent = isHidden ? '▼' : '▶';
 }
 
-function fmtMonth(iso) {
-  return new Date(iso+'T00:00:00').toLocaleDateString('en-US',{month:'long',year:'numeric'});
-}
+// ─── UTILS ────────────────────────────────────────────────────
+function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow='hidden'; }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow=''; }
+function closeOnOverlay(e,id) { if(e.target.id===id) closeModal(id); }
+function esc(s) { return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
+function fmtDate(iso) { if(!iso)return''; return new Date(iso+'T00:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}); }
+function fmtMonth(iso) { if(!iso)return''; return new Date(iso+'T00:00:00').toLocaleDateString('en-US',{month:'long',year:'numeric'}); }
 
 loadSurveys();
 loadNewsletters();
-
-function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
-function fmtDate(iso){if(!iso)return'';return new Date(iso+'T00:00:00').toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});}
 </script>
 </body>
 </html>
